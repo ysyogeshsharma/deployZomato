@@ -360,8 +360,10 @@ color: black;
     }
     .head-container h2{
         margin: 28px auto;
+        font-size: 30px;
         text-align: center;
         color: aliceblue;
+        width: 496px;
     }
     main .main-container .section-top{
         width: 95%;
