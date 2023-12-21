@@ -1,12 +1,5 @@
+// let indianCities=require('../jsonObj/obj.js');
 let indianCities=['Agra','Ahmedabad','Ajmer','Alappuzha','Allahabad','Amravati','Amritsar','Aurangabad','Bengaluru','Bhopal','Bhubaneswar','Chandigarh','Chennai','Coimbatore','Cuttack','Darjeeling','Dehradun','DelhiNCR','Dharamshala','Gangtok','Goa','Gorakhpur','Guntur','Guwahati','Gwalior','Haridwar','Hyderabad','Indore','Jabalpur','Jaipur','Jalandhar','Jammu','Jamnagar','Jamshedpur','Jhansi','Jodhpur','Junagadh','Kanpur','Khajuraho','Khamgaon','Kharagpur','Kochi','Kolhapur','Kolkata','Kota','Lucknow','Ludhiana','Madurai','Manali','Mangalore','Manipal','Meerut','Mumbai','Mussoorie','Mysore','Nagpur','Nainital','Nashik','Neemrana','Ooty','Palakkad','Patiala','Patna','Puducherry','Pune','Pushkar','Raipur','Rajkot','Ranchi','Rishikesh','Salem','Shimla','Siliguri','Srinagar','Surat','Thrissur','Tirupati','Trichy','Trivandrum','Udaipur','Vadodara','Varanasi','Vellore','Vijayawada','Visakhapatnam'];
-// fetch('http://country.io/names.json')
-// .then((res)=>{
-//     console.log(res);
-//     return res.json();
-// })
-// .then((data)=>{
-//     console.log(data);
-// })
 
 const toggler=document.getElementById('toggle-button');
 const login = document.querySelector('.banner');
@@ -66,18 +59,28 @@ login.addEventListener('click', (e) =>{
         document.getElementById('login-page').style.zIndex='2';
         document.getElementById('blur-content').style.zIndex='1'
         document.getElementById('signup-page').style.zIndex='-1'; 
+        document.getElementById('login-email').style.zIndex='-2';
     }
     else if(e.target.innerHTML=='Sign up'){
         document.getElementById('blur-content').style.visibility='visible'
         document.getElementById('signup-page').style.zIndex='2';
         document.getElementById('blur-content').style.zIndex='1'
         document.getElementById('login-page').style.zIndex='-1'; 
+        document.getElementById('login-email').style.zIndex='-2';
     }
     else{
         document.getElementById('signup-page').style.zIndex='-1';
         document.getElementById('login-page').style.zIndex='-1';
+        document.getElementById('login-email').style.zIndex='-2';
     } 
 });
+function emailLogin(){
+    document.getElementById('blur-content').style.visibility='visible'
+    document.getElementById('signup-page').style.zIndex='-1';
+    document.getElementById('login-page').style.zIndex='-1';
+    document.getElementById('login-email').style.zIndex='2';
+}
+
 document.getElementById('blur-content').addEventListener('click',(e)=>{
     if(e.target.getAttribute('id')==='blur-content'){
         document.getElementById('blur-content').style.visibility='hidden'
@@ -103,29 +106,13 @@ getcountry.addEventListener('click', (e)=>{
 
 
 const getcity=document.getElementById('country');
-getcity.style.width='80%';
-getcity.style.margin='auto';
-getcity.style.display='flex';
-getcity.style.flexWrap='wrap';
-getcity.style.marginTop='4%';
-getcity.style.gap='10px'
+getcity.classList.add('virtual-content') 
 
 indianCities.forEach(element => {
     let newEle=document.createElement('a');
     newEle.setAttribute('href',`https://www.zomato.com/${element}`);
-    newEle.style.width='26%';
-    newEle.style.textDecoration='none'
-    newEle.style.display='flex';
-    newEle.style.justifyContent='space-between';
-    newEle.style.border='1px solid rgb(232, 232, 232)';
-    newEle.style.borderRadius='.8rem';
-    newEle.style.margin='.5em';
-    newEle.style.padding='1em';
-    newEle.style.fontSize='2rem';
-    newEle.style.color='#5A5A5A';
-    newEle.style.cursor='pointer';
-    newEle.style.boxShadow='rgba(28, 28, 28, 0.08) 0px 1.42623px 2.85246px';
     newEle.className='cities';
+    // newEle.className='cities';
     newEle.innerHTML=`${element} Restaurants <span>›</span>`;
     getcity.appendChild(newEle);
 });
